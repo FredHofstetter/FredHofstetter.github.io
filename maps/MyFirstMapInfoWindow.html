@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+     <style>
+          html, body {
+              height: 100%;
+              margin: 0;
+              padding: 0;
+          }
+          #map {
+                 height: 100%;
+                 width: 100%;
+           }
+     </style></head>
+<body>
+     <div id="map"></div>
+     <script>
+          function initMap() {
+               var romeColosseum = new google.maps.LatLng(41.8902, 12.4922);
+               var mapProperties = {
+                    zoom:8,
+                    center: romeColosseum
+               };
+               var map=new google.maps.Map(document.getElementById("map"),mapProperties);
+               var contentString = '<h1>Colosseum</h1>'+
+                   '<p>The Colosseum is an oval amphitheatre in the center of Rome, '+
+                   'Italy. Constructed from concrete and sand, it is the largest '+
+                   'amphitheatre ever built. </p>'+
+                   '<p>Attribution: Colosseum, '+
+                   '<a href="https://en.wikipedia.org/wiki/Colosseum">'+
+                   ' https://en.wikipedia.org/wiki/Colosseum</a> '+
+                   '(last visited February 18, 2017).</p>';
+
+               var infowindow = new google.maps.InfoWindow({
+                 content: contentString
+               });
+
+               var marker = new google.maps.Marker({
+                 position: romeColosseum,
+                 map: map,
+                 title: 'Colosseum'
+               });
+
+               marker.addListener('click', function() {
+                 infowindow.open(map, marker);
+               });
+          }
+     </script>
+     <script async defer
+          src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCeApsmsy0ZSFYMuVrinoLGtMM-UkfsaZA&callback=initMap">
+     </script></body>
+</html>
